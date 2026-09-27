@@ -1,0 +1,1936 @@
+/* =====================================================
+   HANDWAVE - NEON CATCH
+   Professional Futuristic UI
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --cyan: #00f5ff;
+    --blue: #008cff;
+    --purple: #8b5cf6;
+    --pink: #ff2cdf;
+    --green: #00ff9d;
+    --yellow: #ffe600;
+    --red: #ff3158;
+
+    --dark: #02050d;
+    --dark-two: #071225;
+
+    --glass: rgba(8, 18, 38, 0.78);
+
+    --border: rgba(0, 245, 255, 0.18);
+
+    --white: #ffffff;
+
+    --muted: #91a1bb;
+
+}
+
+
+html,
+body {
+
+    width: 100%;
+    min-height: 100%;
+
+}
+
+
+body {
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            #10245b 0%,
+            #040914 42%,
+            #01030a 100%
+        );
+
+    color: var(--white);
+
+    font-family: "Poppins", sans-serif;
+
+    overflow-x: hidden;
+
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.background {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: -5;
+
+}
+
+
+.grid {
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0.17;
+
+    background-image:
+
+        linear-gradient(
+            rgba(0, 245, 255, 0.15) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(0, 245, 255, 0.15) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+
+    transform: perspective(500px)
+               rotateX(58deg)
+               scale(1.8);
+
+    transform-origin: bottom;
+
+    animation: gridMove 15s linear infinite;
+
+}
+
+
+@keyframes gridMove {
+
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0 550px;
+    }
+
+}
+
+
+.orb {
+
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    opacity: 0.12;
+
+}
+
+
+.orb-one {
+
+    background: var(--cyan);
+
+    top: -180px;
+    left: -120px;
+
+}
+
+
+.orb-two {
+
+    background: var(--pink);
+
+    right: -180px;
+    top: 30%;
+
+}
+
+
+.orb-three {
+
+    background: var(--purple);
+
+    bottom: -200px;
+    left: 35%;
+
+}
+
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar {
+
+    height: 82px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+
+    background: rgba(2, 7, 18, 0.65);
+
+    backdrop-filter: blur(20px);
+
+    position: relative;
+
+    z-index: 20;
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+}
+
+
+.brand-icon {
+
+    width: 45px;
+    height: 45px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--cyan),
+            var(--blue)
+        );
+
+    color: #00111b;
+
+    font-size: 23px;
+
+    box-shadow:
+        0 0 25px rgba(0,245,255,0.35);
+
+}
+
+
+.brand-name {
+
+    font-family: "Orbitron", sans-serif;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    font-size: 19px;
+
+}
+
+
+.brand-name span {
+
+    color: var(--cyan);
+
+}
+
+
+.brand-subtitle {
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    color: var(--muted);
+
+    margin-top: 2px;
+
+}
+
+
+.header-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 15px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    color: var(--muted);
+
+}
+
+
+.online-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--red);
+
+    box-shadow: 0 0 10px var(--red);
+
+}
+
+
+/* =====================================================
+   SCREEN
+===================================================== */
+
+.screen {
+
+    display: none;
+
+    min-height: calc(100vh - 82px);
+
+}
+
+
+.screen.active {
+
+    display: flex;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+#homeScreen {
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 60px 20px 90px;
+
+}
+
+
+.hero {
+
+    width: min(1100px, 100%);
+
+    text-align: center;
+
+}
+
+
+.hero-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 9px 16px;
+
+    border-radius: 30px;
+
+    background: rgba(0,245,255,0.06);
+
+    border: 1px solid rgba(0,245,255,0.2);
+
+    color: var(--cyan);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 28px;
+
+}
+
+
+.badge-dot {
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--cyan);
+
+    box-shadow: 0 0 12px var(--cyan);
+
+    animation: blink 1.4s infinite;
+
+}
+
+
+@keyframes blink {
+
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .25;
+    }
+
+}
+
+
+.hero h1 {
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(48px, 9vw, 105px);
+
+    line-height: 0.95;
+
+    letter-spacing: -3px;
+
+    font-weight: 900;
+
+    margin-bottom: 30px;
+
+}
+
+
+.hero h1 span {
+
+    display: block;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            #7b7cff,
+            var(--pink)
+        );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+    filter:
+        drop-shadow(
+            0 0 30px rgba(0,245,255,0.25)
+        );
+
+}
+
+
+.hero-description {
+
+    max-width: 680px;
+
+    margin: auto;
+
+    color: var(--muted);
+
+    line-height: 1.8;
+
+    font-size: 15px;
+
+}
+
+
+.hero-actions {
+
+    margin-top: 34px;
+
+}
+
+
+.main-button {
+
+    border: none;
+
+    cursor: pointer;
+
+    padding: 16px 30px;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--cyan),
+            var(--blue)
+        );
+
+    color: #001018;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 0 25px rgba(0,245,255,0.25);
+
+    transition: .25s;
+
+}
+
+
+.main-button:hover {
+
+    transform:
+        translateY(-4px)
+        scale(1.03);
+
+    box-shadow:
+        0 0 45px rgba(0,245,255,0.5);
+
+}
+
+
+.main-button:active {
+
+    transform: scale(.97);
+
+}
+
+
+.main-button i {
+
+    margin-right: 8px;
+
+}
+
+
+.start-tip {
+
+    margin-top: 15px;
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+}
+
+
+.start-tip span {
+
+    color: var(--cyan);
+
+    font-family: "Orbitron", sans-serif;
+
+    margin-right: 5px;
+
+}
+
+
+.start-tip strong {
+
+    color: white;
+
+}
+
+
+/* =====================================================
+   INSTRUCTIONS
+===================================================== */
+
+.instructions {
+
+    margin-top: 65px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+}
+
+
+.instruction-card {
+
+    padding: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    text-align: left;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(15px);
+
+    transition: .25s;
+
+}
+
+
+.instruction-card:hover {
+
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(0,245,255,0.35);
+
+    background:
+        rgba(0,245,255,0.07);
+
+}
+
+
+.instruction-icon {
+
+    width: 44px;
+    height: 44px;
+
+    min-width: 44px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 13px;
+
+    font-size: 21px;
+
+}
+
+
+.instruction-icon.move {
+
+    background:
+        rgba(0,245,255,0.12);
+
+    color: var(--cyan);
+
+}
+
+
+.instruction-icon.magnet {
+
+    background:
+        rgba(255,44,223,0.12);
+
+}
+
+
+.instruction-icon.shield {
+
+    background:
+        rgba(139,92,246,0.14);
+
+}
+
+
+.instruction-icon.pause {
+
+    background:
+        rgba(255,230,0,0.1);
+
+}
+
+
+.instruction-card strong {
+
+    display: block;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.instruction-card span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-top: 5px;
+
+}
+
+
+/* =====================================================
+   FEATURES
+===================================================== */
+
+.feature-row {
+
+    margin-top: 32px;
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 25px;
+
+}
+
+
+.feature-row div {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #687994;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.feature-row i {
+
+    color: var(--cyan);
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   GAME SCREEN
+===================================================== */
+
+#gameScreen {
+
+    padding: 25px 3% 50px;
+
+    justify-content: center;
+
+}
+
+
+.game-wrapper {
+
+    width: min(1250px, 100%);
+
+}
+
+
+.game-hud {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.hud-card {
+
+    min-height: 72px;
+
+    padding: 13px 17px;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    background:
+        rgba(6,15,32,0.78);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(15px);
+
+}
+
+
+.hud-icon {
+
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 11px;
+
+    background:
+        rgba(0,245,255,0.08);
+
+    color: var(--cyan);
+
+}
+
+
+.hud-card span {
+
+    display: block;
+
+    color: #71829c;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.hud-card strong {
+
+    display: block;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 17px;
+
+    margin-top: 3px;
+
+}
+
+
+.score-card strong {
+
+    color: var(--cyan);
+
+}
+
+
+.combo-card strong {
+
+    color: #ff8a00;
+
+}
+
+
+.level-card strong {
+
+    color: var(--purple);
+
+}
+
+
+.lives-card strong {
+
+    font-size: 14px;
+
+}
+
+
+/* =====================================================
+   GAME STAGE
+===================================================== */
+
+.game-stage {
+
+    position: relative;
+
+    width: 100%;
+
+    height: min(68vh, 700px);
+
+    min-height: 500px;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    border: 1px solid rgba(0,245,255,0.18);
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(0,110,180,0.08),
+            transparent 50%
+        ),
+        #020712;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.5),
+        inset 0 0 70px rgba(0,245,255,.025);
+
+}
+
+
+#gameCanvas {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+
+/* =====================================================
+   CAMERA
+===================================================== */
+
+.camera-box {
+
+    position: absolute;
+
+    top: 17px;
+    right: 17px;
+
+    width: 190px;
+    height: 142px;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(0,245,255,0.3);
+
+    background: #01040a;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.5),
+        0 0 25px rgba(0,245,255,.08);
+
+    z-index: 10;
+
+}
+
+
+#webcam {
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transform: scaleX(-1);
+
+    opacity: .65;
+
+}
+
+
+#handCanvas {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+}
+
+
+.camera-top {
+
+    position: absolute;
+
+    top: 8px;
+    left: 8px;
+    right: 8px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+
+    z-index: 4;
+
+}
+
+
+.live-indicator {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    background: rgba(0,0,0,.55);
+
+    padding: 4px 7px;
+
+    border-radius: 10px;
+
+}
+
+
+.live-indicator span {
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: var(--red);
+
+    box-shadow: 0 0 7px var(--red);
+
+}
+
+
+.gesture-display {
+
+    position: absolute;
+
+    bottom: 7px;
+    left: 7px;
+    right: 7px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 7px 9px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(0,5,15,.78);
+
+    backdrop-filter: blur(10px);
+
+    z-index: 5;
+
+}
+
+
+.gesture-display > span {
+
+    font-size: 19px;
+
+}
+
+
+.gesture-display small {
+
+    display: block;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 6px;
+
+    color: #65748a;
+
+}
+
+
+.gesture-display strong {
+
+    display: block;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 8px;
+
+    color: var(--cyan);
+
+    margin-top: 2px;
+
+}
+
+
+/* =====================================================
+   POWER PANEL
+===================================================== */
+
+.power-panel {
+
+    position: absolute;
+
+    left: 18px;
+    top: 18px;
+
+    width: 165px;
+
+    z-index: 8;
+
+}
+
+
+.power-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 9px;
+
+    margin-bottom: 8px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(3,10,22,.75);
+
+    border: 1px solid rgba(255,255,255,.06);
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+.power-icon {
+
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 8px;
+
+    background: rgba(255,255,255,.05);
+
+}
+
+
+.power-info {
+
+    flex: 1;
+
+}
+
+
+.power-info > span {
+
+    display: block;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+
+    color: #8290a6;
+
+    margin-bottom: 5px;
+
+}
+
+
+.power-bar {
+
+    height: 4px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+}
+
+
+.power-bar div {
+
+    height: 100%;
+
+    width: 0%;
+
+    transition: width .1s linear;
+
+}
+
+
+#magnetBar {
+
+    background: var(--pink);
+
+    box-shadow: 0 0 8px var(--pink);
+
+}
+
+
+#shieldBar {
+
+    background: var(--purple);
+
+    box-shadow: 0 0 8px var(--purple);
+
+}
+
+
+/* =====================================================
+   PAUSE
+===================================================== */
+
+.pause-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(1,4,12,.68);
+
+    backdrop-filter: blur(7px);
+
+    z-index: 20;
+
+}
+
+
+.pause-overlay.show {
+
+    display: flex;
+
+}
+
+
+.pause-box {
+
+    text-align: center;
+
+    padding: 40px;
+
+}
+
+
+.pause-symbol {
+
+    font-size: 55px;
+
+    margin-bottom: 12px;
+
+    filter:
+        drop-shadow(
+            0 0 20px rgba(255,230,0,.4)
+        );
+
+}
+
+
+.pause-box h2 {
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 25px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.pause-box p {
+
+    margin-top: 10px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+/* =====================================================
+   GAME MESSAGE
+===================================================== */
+
+.game-message {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 34px;
+
+    font-weight: 900;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    z-index: 15;
+
+    white-space: nowrap;
+
+}
+
+
+.game-message.show {
+
+    animation: messagePop .7s ease;
+
+}
+
+
+@keyframes messagePop {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(.5);
+    }
+
+    35% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+}
+
+
+/* =====================================================
+   GAME CONTROLS
+===================================================== */
+
+.game-controls {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+
+    padding-top: 13px;
+
+    color: #66748c;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* =====================================================
+   GAME OVER
+===================================================== */
+
+#gameOverScreen {
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 40px 20px;
+
+}
+
+
+.game-over-card {
+
+    width: min(560px, 100%);
+
+    padding: 50px 35px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12,25,52,.88),
+            rgba(3,8,18,.9)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.5);
+
+}
+
+
+.game-over-icon {
+
+    font-size: 65px;
+
+    animation:
+        floating 2s ease-in-out infinite;
+
+}
+
+
+@keyframes floating {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+}
+
+
+.small-title {
+
+    margin-top: 15px;
+
+    color: var(--red);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+}
+
+
+.game-over-card h2 {
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 42px;
+
+    margin-top: 8px;
+
+}
+
+
+.final-score {
+
+    margin: 28px 0;
+
+    padding: 20px;
+
+    border-radius: 17px;
+
+    background:
+        rgba(0,245,255,.045);
+
+    border:
+        1px solid rgba(0,245,255,.1);
+
+}
+
+
+.final-score span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.final-score strong {
+
+    display: block;
+
+    margin-top: 7px;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 43px;
+
+    color: var(--cyan);
+
+    text-shadow:
+        0 0 25px rgba(0,245,255,.35);
+
+}
+
+
+.results-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+
+}
+
+
+.results-grid div {
+
+    padding: 14px;
+
+    border-radius: 13px;
+
+    background:
+        rgba(255,255,255,.035);
+
+}
+
+
+.results-grid span {
+
+    display: block;
+
+    color: #6d7d96;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 7px;
+
+}
+
+
+.results-grid strong {
+
+    display: block;
+
+    margin-top: 6px;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 16px;
+
+}
+
+
+.game-over-actions {
+
+    margin-top: 28px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+}
+
+
+.secondary-button {
+
+    padding: 15px 23px;
+
+    border-radius: 13px;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    background:
+        rgba(255,255,255,.05);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 10px;
+
+    transition: .25s;
+
+}
+
+
+.secondary-button:hover {
+
+    background:
+        rgba(255,255,255,.1);
+
+}
+
+
+.restart-tip {
+
+    margin-top: 18px;
+
+    color: #66748b;
+
+    font-size: 10px;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    position: fixed;
+
+    bottom: 0;
+
+    left: 0;
+    right: 0;
+
+    height: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    background:
+        rgba(2,5,13,.7);
+
+    border-top:
+        1px solid rgba(255,255,255,.05);
+
+    color: #47546a;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+
+    z-index: 30;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 850px) {
+
+    .instructions {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .game-hud {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .game-stage {
+
+        height: 65vh;
+
+        min-height: 450px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .topbar {
+
+        height: 70px;
+
+        padding: 0 18px;
+
+    }
+
+    .brand-icon {
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 18px;
+
+    }
+
+    .brand-name {
+
+        font-size: 15px;
+
+    }
+
+    .header-status {
+
+        padding: 7px 9px;
+
+        font-size: 7px;
+
+    }
+
+    .hero {
+
+        padding-top: 25px;
+
+    }
+
+    .hero h1 {
+
+        font-size: 48px;
+
+        letter-spacing: -2px;
+
+    }
+
+    .hero-description {
+
+        font-size: 12px;
+
+    }
+
+    .instructions {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .instruction-card {
+
+        padding: 14px;
+
+    }
+
+    #gameScreen {
+
+        padding: 15px 10px 45px;
+
+    }
+
+    .game-hud {
+
+        gap: 7px;
+
+    }
+
+    .hud-card {
+
+        min-height: 62px;
+
+        padding: 9px;
+
+    }
+
+    .hud-icon {
+
+        width: 32px;
+        height: 32px;
+
+    }
+
+    .hud-card strong {
+
+        font-size: 13px;
+
+    }
+
+    .camera-box {
+
+        width: 145px;
+        height: 108px;
+
+        top: 10px;
+        right: 10px;
+
+    }
+
+    .power-panel {
+
+        left: 10px;
+        top: 10px;
+
+        width: 130px;
+
+    }
+
+    .power-item {
+
+        padding: 6px;
+
+    }
+
+    .game-stage {
+
+        min-height: 430px;
+
+        height: 68vh;
+
+        border-radius: 15px;
+
+    }
+
+    .game-controls {
+
+        gap: 10px;
+
+        font-size: 7px;
+
+    }
+
+    .game-over-card {
+
+        padding: 35px 20px;
+
+    }
+
+    .game-over-card h2 {
+
+        font-size: 32px;
+
+    }
+
+    .final-score strong {
+
+        font-size: 35px;
+
+    }
+
+    footer {
+
+        display: none;
+
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .header-status span {
+
+        display: none;
+
+    }
+
+    .camera-box {
+
+        width: 125px;
+        height: 94px;
+
+    }
+
+    .power-panel {
+
+        width: 115px;
+
+    }
+
+    .power-info > span {
+
+        font-size: 6px;
+
+    }
+
+}

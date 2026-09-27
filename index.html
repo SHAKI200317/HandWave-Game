@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HANDWAVE | Neon Catch</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- MediaPipe -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"
+        crossorigin="anonymous">
+    </script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+        crossorigin="anonymous">
+    </script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"
+        crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+
+<div class="background">
+
+    <div class="grid"></div>
+
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="orb orb-three"></div>
+
+    <div class="stars"></div>
+
+</div>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            <i class="bi bi-hand-index-thumb"></i>
+        </div>
+
+        <div>
+            <div class="brand-name">
+                HAND<span>WAVE</span>
+            </div>
+
+            <div class="brand-subtitle">
+                NEON CATCH
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="header-status">
+
+        <div class="online-dot"></div>
+
+        <span id="cameraStatus">
+            CAMERA OFFLINE
+        </span>
+
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main>
+
+
+    <!-- ================= HOME ================= -->
+
+    <section id="homeScreen"
+             class="screen active">
+
+        <div class="hero">
+
+            <div class="hero-badge">
+
+                <span class="badge-dot"></span>
+
+                AI HAND CONTROLLED ARCADE
+
+            </div>
+
+
+            <h1>
+
+                CATCH THE
+
+                <span>ENERGY</span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Control the game with your hand.
+                Catch glowing energy, activate special powers,
+                avoid bombs and build your highest combo.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <button id="startButton"
+                        class="main-button">
+
+                    <i class="bi bi-hand-index-thumb-fill"></i>
+
+                    START GAME
+
+                </button>
+
+            </div>
+
+
+            <div class="start-tip">
+
+                <span>TIP</span>
+
+                Show a
+
+                <strong>👍 THUMBS UP</strong>
+
+                to start.
+
+            </div>
+
+
+            <!-- Instructions -->
+
+            <div class="instructions">
+
+                <div class="instruction-card">
+
+                    <div class="instruction-icon move">
+                        <i class="bi bi-arrows"></i>
+                    </div>
+
+                    <div>
+                        <strong>MOVE</strong>
+                        <span>Move your hand left & right</span>
+                    </div>
+
+                </div>
+
+
+                <div class="instruction-card">
+
+                    <div class="instruction-icon magnet">
+                        ☝️
+                    </div>
+
+                    <div>
+                        <strong>MAGNET</strong>
+                        <span>Point with index finger</span>
+                    </div>
+
+                </div>
+
+
+                <div class="instruction-card">
+
+                    <div class="instruction-icon shield">
+                        ✊
+                    </div>
+
+                    <div>
+                        <strong>SHIELD</strong>
+                        <span>Make a fist</span>
+                    </div>
+
+                </div>
+
+
+                <div class="instruction-card">
+
+                    <div class="instruction-icon pause">
+                        🖐️
+                    </div>
+
+                    <div>
+                        <strong>PAUSE</strong>
+                        <span>Open your palm</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Game Features -->
+
+            <div class="feature-row">
+
+                <div>
+                    <i class="bi bi-stars"></i>
+                    <span>NEON EFFECTS</span>
+                </div>
+
+                <div>
+                    <i class="bi bi-cpu"></i>
+                    <span>AI TRACKING</span>
+                </div>
+
+                <div>
+                    <i class="bi bi-graph-up-arrow"></i>
+                    <span>LEVEL SYSTEM</span>
+                </div>
+
+                <div>
+                    <i class="bi bi-trophy"></i>
+                    <span>HIGH SCORE</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= GAME ================= -->
+
+    <section id="gameScreen"
+             class="screen">
+
+        <div class="game-wrapper">
+
+
+            <!-- HUD -->
+
+            <div class="game-hud">
+
+
+                <div class="hud-card score-card">
+
+                    <div class="hud-icon">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <span>SCORE</span>
+
+                        <strong id="score">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hud-card combo-card">
+
+                    <div class="hud-icon">
+                        <i class="bi bi-fire"></i>
+                    </div>
+
+                    <div>
+
+                        <span>COMBO</span>
+
+                        <strong id="combo">
+                            x0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hud-card level-card">
+
+                    <div class="hud-icon">
+                        <i class="bi bi-bar-chart-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <span>LEVEL</span>
+
+                        <strong id="level">
+                            1
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hud-card lives-card">
+
+                    <div class="hud-icon">
+                        <i class="bi bi-heart-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <span>LIVES</span>
+
+                        <strong id="lives">
+                            ❤️❤️❤️
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- GAME AREA -->
+
+            <div class="game-stage">
+
+                <canvas id="gameCanvas"></canvas>
+
+
+                <!-- Camera -->
+
+                <div class="camera-box">
+
+                    <video id="webcam"
+                           autoplay
+                           playsinline
+                           muted>
+                    </video>
+
+                    <canvas id="handCanvas"></canvas>
+
+
+                    <div class="camera-top">
+
+                        <span class="live-indicator">
+                            <span></span>
+                            LIVE
+                        </span>
+
+                        <span>
+                            AI TRACKING
+                        </span>
+
+                    </div>
+
+
+                    <div class="gesture-display">
+
+                        <span id="gestureIcon">
+                            👋
+                        </span>
+
+                        <div>
+
+                            <small>GESTURE</small>
+
+                            <strong id="gesture">
+                                SHOW HAND
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Power indicators -->
+
+                <div class="power-panel">
+
+
+                    <div class="power-item">
+
+                        <div class="power-icon magnet-icon">
+                            ☝️
+                        </div>
+
+                        <div class="power-info">
+
+                            <span>MAGNET</span>
+
+                            <div class="power-bar">
+                                <div id="magnetBar"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="power-item">
+
+                        <div class="power-icon shield-icon">
+                            ✊
+                        </div>
+
+                        <div class="power-info">
+
+                            <span>SHIELD</span>
+
+                            <div class="power-bar">
+                                <div id="shieldBar"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Pause -->
+
+                <div id="pauseOverlay"
+                     class="pause-overlay">
+
+                    <div class="pause-box">
+
+                        <div class="pause-symbol">
+                            🖐️
+                        </div>
+
+                        <h2>GAME PAUSED</h2>
+
+                        <p>
+                            Show your hand again to continue.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Center message -->
+
+                <div id="gameMessage"
+                     class="game-message">
+
+                </div>
+
+            </div>
+
+
+            <div class="game-controls">
+
+                <span>
+                    👋 MOVE
+                </span>
+
+                <span>
+                    ☝️ MAGNET
+                </span>
+
+                <span>
+                    ✊ SHIELD
+                </span>
+
+                <span>
+                    🖐️ PAUSE
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= GAME OVER ================= -->
+
+    <section id="gameOverScreen"
+             class="screen">
+
+        <div class="game-over-card">
+
+            <div class="game-over-icon">
+                💥
+            </div>
+
+            <div class="small-title">
+                ENERGY DEPLETED
+            </div>
+
+            <h2>
+                GAME OVER
+            </h2>
+
+
+            <div class="final-score">
+
+                <span>FINAL SCORE</span>
+
+                <strong id="finalScore">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="results-grid">
+
+                <div>
+                    <span>LEVEL</span>
+                    <strong id="finalLevel">1</strong>
+                </div>
+
+                <div>
+                    <span>COMBO</span>
+                    <strong id="finalCombo">x0</strong>
+                </div>
+
+                <div>
+                    <span>HIGH SCORE</span>
+                    <strong id="highScore">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="game-over-actions">
+
+                <button id="restartButton"
+                        class="main-button">
+
+                    <i class="bi bi-arrow-repeat"></i>
+
+                    PLAY AGAIN
+
+                </button>
+
+                <button id="homeButton"
+                        class="secondary-button">
+
+                    <i class="bi bi-house-fill"></i>
+
+                    HOME
+
+                </button>
+
+            </div>
+
+
+            <p class="restart-tip">
+                👍 Show thumbs up to restart
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- Footer -->
+
+<footer>
+
+    <span>
+        HANDWAVE © 2026
+    </span>
+
+    <span>
+        AI • ARCADE • MOTION
+    </span>
+
+</footer>
+
+
+<!-- ALL GAME LOGIC -->
+<script src="hand.js"></script>
+
+</body>
+</html>
